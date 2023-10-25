@@ -2,11 +2,11 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
-import '../../core/utils/custom_alert.dart';
-import '../../core/utils/shared_keys.dart';
-import '../../core/utils/storage_utils.dart';
-import '../../core/utils/store.dart';
-import '../model/common_response.dart';
+import '../core/utils/custom_alert.dart';
+import '../core/utils/shared_keys.dart';
+import '../core/utils/storage_utils.dart';
+import '../core/utils/store.dart';
+import 'model/common_response.dart';
 
 
 class AppInterceptors extends Interceptor {

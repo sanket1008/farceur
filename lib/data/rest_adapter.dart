@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
-import '../../core/utils/store.dart';
+import '../core/utils/store.dart';
 import 'app_interceptor.dart';
 
 

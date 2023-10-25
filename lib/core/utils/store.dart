@@ -4,23 +4,23 @@ class Store {
   static var SET_ENV = Environments.DEV;
 
   static var baseurl = _getBaseURL(SET_ENV);
-  static var token = _getSessionToken(SET_ENV);
+  //static var token = _getSessionToken(SET_ENV);
 
   static String _getBaseURL(Environments env) {
     String url = "";
 
     switch (env) {
       case Environments.DEV:
-        url = 'https://dev.infyni.com';
+        url = 'http://demo.promena.in';
         break;
       case Environments.PROD:
-        url = 'https://infyni.com';
+        url = 'http://demo.promena.in';
         break;
       case Environments.UAT:
-        url = 'https://uat.infyni.com';
+        url = 'http://demo.promena.in';
         break;
       default:
-        url = 'https://dev.infyni.com';
+        url = 'http://demo.promena.in';
         break;
     }
     return url;
