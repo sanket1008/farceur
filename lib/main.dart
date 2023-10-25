@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'Splash.dart';
+import 'module/home/provider/video_provider.dart';
 
 void main() {
 
@@ -19,15 +21,20 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=>VideoProvider())
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+        theme: ThemeData(
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const Splash()
       ),
-      home: const Splash()
     );
   }
 }
