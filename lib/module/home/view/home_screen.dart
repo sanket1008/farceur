@@ -1,24 +1,22 @@
-import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:appinio_video_player/appinio_video_player.dart';
-import 'package:farceur/xd/VideoComments.dart';
-import 'package:farceur/xd/controller/video_controller.dart';
-import 'package:farceur/xd/player.dart';
+import 'package:farceur/module/home/view/player.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class VideoList extends StatefulWidget {
-  const VideoList({Key? key}) : super(key: key);
+import '../../video_details/view/VideoComments.dart';
+import '../provider/video_controller.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<VideoList> createState() => _VideoListState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _VideoListState extends State<VideoList> {
+class _HomeScreenState extends State<HomeScreen> {
   final videoController = Get.put(VideoController());
   late VideoPlayerController _videoPlayerController;
 
@@ -102,7 +100,7 @@ class _VideoListState extends State<VideoList> {
 
                       return InkWell(
                         onTap: () {
-                          Get.to(() => VideoComments(url: videoController.videoList[index]));
+                          Get.to(() => VideoDetails(url: videoController.videoList[index]));
                         },
                         child: Column(
                           children: [
@@ -115,7 +113,7 @@ class _VideoListState extends State<VideoList> {
                                           right: 0,
                                           child: IconButton(
                                             onPressed: () {
-                                              Get.to(() => VideoComments(url: videoController.videoList[index]));
+                                              Get.to(() => VideoDetails(url: videoController.videoList[index]));
                                             },
                                             icon: Icon(Icons.play_circle,
                                                 color: Colors.white, size: 40),

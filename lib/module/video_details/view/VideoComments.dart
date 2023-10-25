@@ -1,11 +1,12 @@
-import 'package:farceur/xd/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class VideoComments extends StatelessWidget {
-  const VideoComments({Key? key, this.url}) : super(key: key);
+import '../../home/view/player.dart';
+
+class VideoDetails extends StatelessWidget {
+  const VideoDetails({Key? key, this.url}) : super(key: key);
 final String? url;
   @override
   Widget build(BuildContext context) {

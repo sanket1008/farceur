@@ -1,10 +1,10 @@
-import 'package:farceur/xd/VideoList.dart';
-import 'package:farceur/xd/common_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import 'common_input_box.dart';
+import '../../../core/widget/common_button.dart';
+import '../../../core/widget/common_input_box.dart';
+import '../../home/view/home_screen.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -118,9 +118,9 @@ class LoginPage extends StatelessWidget {
                           onPress: () {
                             if (_form.currentState?.validate() ?? false) {
                               if(usernameController.text=="test@gmail.com" && passwordController.text=="12345"){
-                                Get.to(() => VideoList());
+                                Get.to(() => HomeScreen());
                               }else if(usernameController.text=="sanket1008@gmail.com" && passwordController.text=="1234"){
-                                Get.to(() => VideoList());
+                                Get.to(() => HomeScreen());
                               }
 
                             }

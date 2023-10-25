@@ -1,7 +1,8 @@
-import 'package:farceur/xd/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import 'module/login/view/LoginPage.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

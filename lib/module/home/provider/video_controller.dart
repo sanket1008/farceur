@@ -1,11 +1,8 @@
 import 'dart:convert' as convert;
-
-import 'package:farceur/xd/VideoList.dart';
-import 'package:farceur/xd/controller/video_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import '../base_controller.dart';
+import '../../../core/utils/base_controller.dart';
 class VideoController extends BaseController{
   final RxList<dynamic?> videoList=<dynamic?>[].obs;
   Future<void> getVideoList() async {
