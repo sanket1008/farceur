@@ -1,8 +1,10 @@
 import 'dart:convert' as convert;
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../core/utils/base_controller.dart';
+/*
 class VideoController extends BaseController{
   final RxList<dynamic?> videoList=<dynamic?>[].obs;
   Future<void> getVideoList() async {
@@ -23,4 +25,17 @@ hideLoading();
     }
 
   }
+}*/
+
+class VideoProvider with ChangeNotifier{
+
+  final List<String> videoList=[];
+
+  Future<void> getVideoList() async{
+
+
+
+  }
+
+
 }
