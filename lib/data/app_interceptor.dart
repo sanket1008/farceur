@@ -61,7 +61,7 @@ class ErrorInterceptors extends Interceptor {
             return handler.next(err);
           case 401:
 
-            var oldAccessToken = StorageUtil.getString(SharedKeys.ACCESS_TOKEN);
+
 
 
             //err.requestOptions.queryParameters =

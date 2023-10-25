@@ -10,7 +10,7 @@ class LoadingWidget extends StatelessWidget {
         child: Container(
           height: 25,
           width: 25,
-          child: Image.asset(Assets.LOADING_IMAGE),
+          child: Image.asset("assets/images/loading_image.gif"),
         ));
   }
 }

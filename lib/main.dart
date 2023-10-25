@@ -1,3 +1,4 @@
+import 'package:farceur/module/video_details/provider/video_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -23,9 +24,10 @@ class MyApp extends StatelessWidget {
     ]);
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=>VideoProvider())
+        ChangeNotifierProvider(create: (context)=>VideoProvider()),
+        ChangeNotifierProvider(create: (context)=>VideoDetailsProvider())
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
         theme: ThemeData(

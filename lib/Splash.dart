@@ -1,7 +1,10 @@
+import 'package:farceur/module/home/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import 'core/utils/shared_keys.dart';
+import 'core/utils/storage_utils.dart';
 import 'module/login/view/LoginPage.dart';
 
 class Splash extends StatefulWidget {
@@ -15,7 +18,14 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
 Future.delayed(Duration(seconds: 3),(){
-  Get.to(() => LoginPage());
+  _initiateStorageUtils();
+  var login=StorageUtil.getBool(SharedKeys.LOGIN);
+  if(login==true){
+    Get.to(() => HomeScreen());
+  }else{
+    Get.to(() => LoginPage());
+  }
+
 });
 
     super.initState();
@@ -51,4 +61,8 @@ Future.delayed(Duration(seconds: 3),(){
       ),
     );
   }
+  Future<void> _initiateStorageUtils() async {
+    await StorageUtil.getInstance();
+  }
+
 }

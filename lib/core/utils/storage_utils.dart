@@ -39,23 +39,23 @@ class StorageUtil {
     if (_preferences == null) return defValue;
     return _preferences?.getStringList(key) ?? defValue;
   }
-  static Future<bool> putStringList(
+  static Future<bool>? putStringList(
       String key,
       List<String>? value,
       ) {
-    return _preferences!.setStringList(key, value ?? []);
+    return _preferences?.setStringList(key, value ?? []);
   }
 
   // put string
-  static Future<bool> putString(
+  static Future<bool>? putString(
     String key,
     String? value,
   ) {
-    return _preferences!.setString(key, value ?? "");
+    return _preferences?.setString(key, value ?? "");
   }
 
-  static Future<bool> putInt(String key, int? value) {
-    return _preferences!.setInt(key, value!);
+  static Future<bool>? putInt(String key, int? value) {
+    return _preferences?.setInt(key, value!);
   }
 
   static Future<bool>? putBoolean(String key, bool? value) {

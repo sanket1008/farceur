@@ -1,5 +1,7 @@
 
 
+import 'dart:convert';
+
 import 'package:farceur/data/model/video_model.dart';
 
 import '../api_client.dart';
@@ -20,7 +22,13 @@ class VideoServices {
         });
 
     return CommonResponse<List<VideoListModel>>.fromJson(response.data,
-        (data) => videoListModelFromJson(data));
+        (data) => getConvertedToList(data as List<dynamic>));
+
+  }
+
+  List<VideoListModel> getConvertedToList(
+      List<dynamic> data) {
+    return data.map((e) => VideoListModel.fromJson(e)).toList();
   }
 
 

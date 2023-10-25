@@ -191,7 +191,7 @@ class CommonInputBox extends StatelessWidget {
         borderSide: BorderSide(
           color: isErrorEnabled == true
               ? Colors.red
-              : Colors.white,
+              : Color(0xFF3A3B3C),
           width: 0,
         ));
   }

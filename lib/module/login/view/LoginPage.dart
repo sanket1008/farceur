@@ -1,7 +1,13 @@
+import 'package:farceur/core/utils/custom_alert.dart';
+import 'package:farceur/core/utils/shared_keys.dart';
+import 'package:farceur/core/utils/storage_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/utils/assets.dart';
 import '../../../core/widget/common_button.dart';
 import '../../../core/widget/common_input_box.dart';
 import '../../home/view/home_screen.dart';
@@ -14,6 +20,7 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
 
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
+  ValueNotifier<bool> passwordNotifier = ValueNotifier<bool>(true);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +30,7 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 50,
+              height: 100,
             ),
             SvgPicture.asset(
               "assets/images/login.svg",
@@ -49,7 +56,6 @@ class LoginPage extends StatelessWidget {
                 child: Form(
                   key: _form,
                   child: Column(
-
                     children: <Widget>[
                       //Spacer(flex: 85),
                       SizedBox(
@@ -86,26 +92,45 @@ class LoginPage extends StatelessWidget {
                           return null;
                         },
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
 
-                      CommonInputBox(
-                        maxLines: 1,
 
-                        label: "Password",
-                        headerEnabled: true,
-                        isBorderEnabled: true,
-                        controller: passwordController,
-                        //isPassword: loginController.passwordHidden.value,
-                        boarderColor: Color(0xFF3A3B3C),
-                        validator: (value) {
-                          if (value.toString().isEmpty) {
-                            return "Enter Password";
-                          }
-                          return null;
-                        },
-                      ),
+                      ValueListenableBuilder(
+                          valueListenable: passwordNotifier,
+                          builder: (context, value, child) {
+                            return CommonInputBox(
+
+                              controller: passwordController,
+                              maxLines: 1,
+                              inputFormatter: [
+                                FilteringTextInputFormatter(
+                                    RegExp("[a-zA-Z0-9@#&*]"),
+                                    allow: true)
+                              ],
+                              validator: (value) {
+                                if (value.toString().isEmpty) {
+                                  return "Enter Password";
+                                }
+                                return null;
+                              },
+                              isPassword: passwordNotifier.value,
+                              label: "Password",
+                              sufixIcon: Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: InkWell(
+                                    onTap: () {
+                                      passwordNotifier.value =
+                                      ! passwordNotifier.value;
+                                    },
+                                    child: passwordNotifier.value
+                                        ? SvgPicture.asset("assets/images/ic_closed_eye.svg",color: Colors.white,)
+                                        : SvgPicture.asset("assets/images/ic_eye.svg",color: Colors.white,)),
+                              ),
+                              obscureText: passwordNotifier.value,
+                            );
+                          }),
                       // Spacer(flex: 23),
 // Group: Group 4
                       SizedBox(
@@ -113,16 +138,57 @@ class LoginPage extends StatelessWidget {
                       ),
 
                       CommonButton(
-                        width: 300,
+                          width: 300,
+                          height: 50,
                           text: "LOGIN",
+
+                          backGroundColor: Colors.white,
                           onPress: () {
                             if (_form.currentState?.validate() ?? false) {
-                              if(usernameController.text=="test@gmail.com" && passwordController.text=="12345"){
+                              if (usernameController.text ==
+                                      "test1@gmail.com" &&
+                                  passwordController.text == "12345") {
+                                StorageUtil.putInt(SharedKeys.USER_ID, 1);
+                                StorageUtil.putBoolean(SharedKeys.LOGIN, true);
+
                                 Get.to(() => HomeScreen());
-                              }else if(usernameController.text=="sanket1008@gmail.com" && passwordController.text=="1234"){
+                              } else if (usernameController.text ==
+                                  "test2@gmail.com" &&
+                                  passwordController.text == "12345") {
+                                StorageUtil.putInt(SharedKeys.USER_ID, 2);
+                                StorageUtil.putBoolean(SharedKeys.LOGIN, true);
+                                Get.to(() => HomeScreen());
+                              }else if (usernameController.text ==
+                                  "test3@gmail.com" &&
+                                  passwordController.text == "12345") {
+                                StorageUtil.putInt(SharedKeys.USER_ID, 3);
+                                StorageUtil.putBoolean(SharedKeys.LOGIN, true);
                                 Get.to(() => HomeScreen());
                               }
-
+                              else if (usernameController.text ==
+                                  "customer1" &&
+                                  passwordController.text == "customer1pass@29") {
+                                StorageUtil.putInt(SharedKeys.USER_ID, 3);
+                                StorageUtil.putBoolean(SharedKeys.LOGIN, true);
+                                Get.to(() => HomeScreen());
+                              }
+                              else if (usernameController.text ==
+                                  "customer2" &&
+                                  passwordController.text == "customer1pass@35") {
+                                StorageUtil.putInt(SharedKeys.USER_ID, 3);
+                                StorageUtil.putBoolean(SharedKeys.LOGIN, true);
+                                Get.to(() => HomeScreen());
+                              }
+                              else if (usernameController.text ==
+                                  "customer3" &&
+                                  passwordController.text == "customer1pass@48") {
+                                StorageUtil.putInt(SharedKeys.USER_ID, 3);
+                                StorageUtil.putBoolean(SharedKeys.LOGIN, true);
+                                Get.to(() => HomeScreen());
+                              }
+                              else{
+                                CustomAlert.showGenericToast("enter Valid Credential");
+                              }
                             }
                           })
                       //Spacer(flex: 181),

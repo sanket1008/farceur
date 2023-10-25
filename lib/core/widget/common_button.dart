@@ -58,7 +58,7 @@ class CommonButton extends StatelessWidget {
                     if (states.contains(MaterialState.disabled)) {
                       return Colors.grey;
                     } else {
-                      return Color(0xFF3A3B3C);
+                      return Color(0xFFFFFFFF);
                     }
                   },
                 ),
@@ -89,8 +89,8 @@ class CommonButton extends StatelessWidget {
             textAlign: TextAlign.center,
             style: textStyle ??
                 TextStyle(
-                    fontSize: 14,
-                    color: Colors.white),
+                    fontSize: 18,
+                    color: Colors.black),
           ),
         ),
       ),
