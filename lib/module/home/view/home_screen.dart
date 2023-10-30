@@ -25,20 +25,25 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var userId = StorageUtil.getInt(SharedKeys.USER_ID);
+  CustomVideoPlayerController? customVideoPlayerController;
+  late VideoProvider provider;
 
   @override
   void initState() {
     // TODO: implement initState
 
     Future.delayed(Duration.zero, () {
-      Provider.of<VideoProvider>(context, listen: false).getVideoList(userId);
+     provider=   Provider.of<VideoProvider>(context, listen: false);
+      provider.getVideoList(userId,true);
     });
     super.initState();
   }
 
   @override
   void dispose() {
-    //_customVideoPlayerController?.dispose();
+  // _customVideoPlayerController?.dispose();
+    provider.videoList.clear();
+    customVideoPlayerController?.dispose();
     super.dispose();
   }
 
@@ -60,19 +65,21 @@ class _HomeScreenState extends State<HomeScreen> {
               Get.back();
             },
             onClickButtonSecond: () {
+
               StorageUtil.clearPreferences();
-              Get.offAll(() => LoginPage());
+              Get.offAll(() => LoginPage())?.then((value) => customVideoPlayerController?.dispose());
             });
         return false;
       },
       child: Scaffold(
         backgroundColor: const Color(0xFF242526),
+
         body: SafeArea(
 
           child: RefreshIndicator(
             onRefresh: () {
               return Provider.of<VideoProvider>(context, listen: false)
-                  .getVideoList(userId);
+                  .getVideoList(userId,false);
             },
             child: SingleChildScrollView(
               physics: AlwaysScrollableScrollPhysics(),
@@ -80,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   //SizedBox(height: 20,),
                   Container(
-                   
+
                     color: Colors.black,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -119,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Get.back();
                                     },
                                     onClickButtonSecond: () {
+                                      customVideoPlayerController?.dispose();
                                       StorageUtil.clearPreferences();
                                       Get.offAll(() => LoginPage());
                                     });

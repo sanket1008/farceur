@@ -168,21 +168,21 @@ class LoginPage extends StatelessWidget {
                               else if (usernameController.text ==
                                   "customer1" &&
                                   passwordController.text == "customer1pass@29") {
-                                StorageUtil.putInt(SharedKeys.USER_ID, 3);
+                                StorageUtil.putInt(SharedKeys.USER_ID, 4);
                                 StorageUtil.putBoolean(SharedKeys.LOGIN, true);
                                 Get.to(() => HomeScreen());
                               }
                               else if (usernameController.text ==
                                   "customer2" &&
                                   passwordController.text == "customer1pass@35") {
-                                StorageUtil.putInt(SharedKeys.USER_ID, 3);
+                                StorageUtil.putInt(SharedKeys.USER_ID, 5);
                                 StorageUtil.putBoolean(SharedKeys.LOGIN, true);
                                 Get.to(() => HomeScreen());
                               }
                               else if (usernameController.text ==
                                   "customer3" &&
                                   passwordController.text == "customer1pass@48") {
-                                StorageUtil.putInt(SharedKeys.USER_ID, 3);
+                                StorageUtil.putInt(SharedKeys.USER_ID, 6);
                                 StorageUtil.putBoolean(SharedKeys.LOGIN, true);
                                 Get.to(() => HomeScreen());
                               }

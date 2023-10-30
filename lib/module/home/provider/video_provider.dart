@@ -35,8 +35,8 @@ class VideoProvider with ChangeNotifier{
 
   final List<VideoListModel> videoList=[];
 
-  Future<void> getVideoList(int userId) async{
-    showLoading("Loading");
+  Future<void> getVideoList(int userId,bool loading) async{
+    loading==true?showLoading("Loading"):IgnorePointer();
     var response= await VideoServices().getVideoList(userId);
 hideLoading();
     if(response.statusCode==200){
